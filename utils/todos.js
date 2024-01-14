@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const uuid = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 
 const rootDir = require("./path");
 //access to view file
