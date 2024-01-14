@@ -1,6 +1,7 @@
 const Todo = require("../model/todo");
 const todoUtils = require("../utils/todos");
 
+
 exports.addTodo = (req, res) => {
   if (!req.body.todo) return res.redirect("/");
   //create a task(instance) from Todo class

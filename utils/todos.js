@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 
+const uuid = require("uuid");
+
 const rootDir = require("./path");
 //access to view file
 const filePath = path.join(rootDir, "data", "todos");
@@ -19,7 +21,7 @@ exports.saveTodos = (todos, callback) => {
 };
 
 exports.generateRandomId = () => {
-  return Math.floor(Math.random() * 1000);
+  return uuidv4();
 };
 
 exports.completedTodos = (callback) => {
