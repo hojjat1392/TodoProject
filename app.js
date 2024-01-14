@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const errorController = require("./controllers/error");
 const path = require("path");
 
 const { setStatics } = require("./utils/statics");
@@ -24,8 +24,10 @@ app.set("views", "views");
 //routes
 app.use("/admin", adminRoutes);
 app.use(indexRoutes);
-
 //end of routes
+
+//404 page
+app.use(errorController.get404);
 
 app.listen(3000, () => {
   console.log("server is running");
