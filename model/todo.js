@@ -20,3 +20,5 @@ const Todo = sequelize.define("Todo", {
     allowNull: false,
   },
 });
+
+module.exports = Todo;
