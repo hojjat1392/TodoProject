@@ -4,6 +4,7 @@ const errorController = require("./controllers/error");
 const path = require("path");
 
 const { setStatics } = require("./utils/statics");
+const sequelize = require("./utils/database");
 const adminRoutes = require("./routes/admin");
 const indexRoutes = require("./routes/index");
 
@@ -29,6 +30,8 @@ app.use(indexRoutes);
 //404 page
 app.use(errorController.get404);
 
-app.listen(3000, () => {
-  console.log("server is running");
-});
+sequelize.sync().then((result) => {
+    console.log(result);
+    app.listen(3000, () => console.log("server is running"));
+}).catch((err) => console.log(err));
+

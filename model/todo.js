@@ -2,6 +2,7 @@ const { DataTypes } = require("sequelize");
 
 const sequelize = require("../utils/database");
 
+//? initial database
 const Todo = sequelize.define("Todo", {
   //model attributes:
   id: {
