@@ -30,8 +30,7 @@ app.use(indexRoutes);
 //404 page
 app.use(errorController.get404);
 
-sequelize.sync().then((result) => {
+sequelize.sync().then( result =>{
     console.log(result);
     app.listen(3000, () => console.log("server is running"));
-}).catch((err) => console.log(err));
-
+}).catch(err => console.log(err));
