@@ -1,4 +1,4 @@
-const express = require("express");//impirt express for using Router
+const express = require("express");//import express for using Router
 //using exporess router
 const router = express.Router();
 
