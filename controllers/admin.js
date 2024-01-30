@@ -20,8 +20,10 @@ exports.deleteTodo = (req, res) => {
 };
 
 exports.completeTodo = (req, res) => {
-  Todo.setTodoToComplete(req.params.id, (err) => {
-    if (!err) res.redirect("/");
-    else console.log(err);
-  });
+  Todo.findByPk(req.params.id)
+    .then((todo) => {
+      todo.completed = true;
+      return todo.save();})
+    .then(() => res.redirect("/"))
+    .catch((err) => console.log(err));
 };
