@@ -1,29 +1,33 @@
 const Todo = require("../model/todo");
 
-exports.addTodo = (req, res) => {
+exports.addTodo = async (req, res) => {
   //add new todo
   if (!req.body.todo) return res.redirect("/");
-
-  Todo.create({ text: req.body.todo })
-    .then((result) => {
-      console.log(result);
-      res.redirect("/");
-    })
-    .catch((err) => console.log(err));
+  try {
+    await Todo.create({ text: req.body.todo });
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-exports.deleteTodo = (req, res) => {
+exports.deleteTodo = async (req, res) => {
   //استفاده از params برای دریافت id کار که از طریق url دریافت شده.
-  Todo.destroy({ where: { id: req.params.id } })
-    .then(() => res.redirect("/"))
-    .catch((err) => console.log(err));
+  try {
+    await Todo.destroy({ where: { id: req.params.todo } });
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-exports.completeTodo = (req, res) => {
-  Todo.findByPk(req.params.id)
-    .then((todo) => {
-      todo.completed = true;
-      return todo.save();})
-    .then(() => res.redirect("/"))
-    .catch((err) => console.log(err));
+exports.completeTodo = async (req, res) => {
+  try {
+    const todo = await Todo.findByPk(req.params.id);
+    todo.completed = true;
+    res.redirect("/");
+    return todo.save();
+  } catch (error) {
+    console.log(err);
+  }
 };
